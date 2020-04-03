@@ -12,6 +12,7 @@
 ##' @param ignore_warnings default is FALSE
 ##' @section Details: smoothing parameter (h) is based on data resolution. Suggestions: (kb=10, h=20), (kb=20, h=12), (kb=25, h=10)
 ##' @return A zipped text file containing the original input file with an appendended column of HiC-ACT p-values for all p-values processed (those less than the specified threshold)
+##' @example
 ##' @import data.table
 ##' @import fastmatch
 ##' @importFrom R.utils gzip
