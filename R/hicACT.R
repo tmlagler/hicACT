@@ -42,14 +42,14 @@ hicACT <- function(infile, kb, h, pthres, outdir, outname="ACT_adjusted",
   pval <- as.name(cnames[pcol])
 
   # check data input and specified parameters
-  #check_input(indata, kb, h, pthres, bin1, bin2, ccount, pval, ignore_warnings)
+  check_input(indata, kb, h, pthres, bin1, bin2, ccount, pval, ignore_warnings)
 
   # remove all zero valued contactCounts
   data <- indata[eval(ccount) > 0]
 
   # adds simple identifiers for each fragment
   Kb <- kb*1e3
-  setDT(data)[, i := (eval(bin1)+Kb/2)/Kb][, j := (eval(bin2)+Kb/2)/Kb]
+  data.table::setDT(data)[, i := (eval(bin1)+Kb/2)/Kb][, j := (eval(bin2)+Kb/2)/Kb]
 
   # select bin pairs for which to compute HiC-ACT test statistic and p-value
   outdata <- data[eval(pval) < pthres]
@@ -66,11 +66,15 @@ hicACT <- function(infile, kb, h, pthres, outdir, outname="ACT_adjusted",
     # identify possible (m,n) pairs
     m_pos <- seq(i-h,i+h)
     n_pos <- seq(j-h,j+h)
-    pair_pos <- data.table(expand.grid(m_pos, n_pos))
+    pair_pos <- data.table::data.table(expand.grid(m_pos, n_pos))
     colnames(pair_pos) <- c("m", "n")
     inrange <- abs(i-pair_pos$m)+abs(j-pair_pos$n) <= h
     pairs <- pair_pos[inrange,]
 
+    # %fin% from fastmatch()
+    `%fin%` <- function(x, y) {
+      fastmatch::fmatch(x, y, nomatch = 0L) > 0L
+    }
     # only (m,n) pairs with pvalues in data
     reduce.dim <- (data_red$i %fin% pairs$m) & (data_red$j %fin% pairs$n)
     small_data <- data_red[reduce.dim,]
@@ -119,7 +123,7 @@ hicACT <- function(infile, kb, h, pthres, outdir, outname="ACT_adjusted",
   # add HiC-ACT p-values to input file
   # only includes bin pairs of interest (post filtering)
   outdata <- data[eval(pval) < pthres]
-  setDT(outdata)[, ACT_pvalue := Tact_pvals]
+  data.table::setDT(outdata)[, ACT_pvalue := Tact_pvals]
   # drop (i, j) columns
   outdata[, c("i","j"):=NULL]
 
