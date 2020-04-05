@@ -17,7 +17,7 @@ hicACT(infile, kb, h, pthres, outdir, outname="ACT_adjusted",
   \item{kb}{data resolution in Kb, e.g. 10}
   \item{h}{smoothing parameter, see 'Details' for suggestions}
   \item{pthres}{p-value threshold for selecting which p-values to adjust using HiC-ACT}
-  \item{outdir}{output directory path}
+  \item{outdir}{output directory path (defaults to working directory)}
   \item{outname}{desired output file name}
   \item{bin1col}{column number containing the first bin IDs (defaults to 2 for Fit-H-C)}
   \item{bin2col}{column number containing the second bin IDs (defaults to 4 for Fit-Hi-C)}

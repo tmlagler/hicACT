@@ -3,7 +3,7 @@
 ##' @param kb data resolution in Kb, e.g. 10
 ##' @param h smoothing parameter, see 'Details' for suggestions
 ##' @param pthres p-value threshold for selecting which p-values to adjust using HiC-ACT
-##' @param outdir output directory path
+##' @param outdir output directory path (defaults to working directory)
 ##' @param outname desired output file name
 ##' @param bin1col column number containing the first bin IDs (defaults to 2 for Fit-Hi-C)
 ##' @param bin2col column number containing the second bin IDs (defaults to 4 for Fit-Hi-C)
@@ -18,7 +18,9 @@
 ##' @importFrom R.utils gzip
 ##' @export hicACT
 
-hicACT <- function(infile, kb, h, pthres, outdir, outname="ACT_adjusted",
+hicACT <- function(infile, kb, h, pthres,
+                   outdir=paste0(getwd(),"/"),
+                   outname="ACT_adjusted",
                    bin1col=2, bin2col=4, ccountcol=5, pcol=6,
                    ignore_warnings=F){
 
