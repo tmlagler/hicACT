@@ -4,7 +4,7 @@
 ##' @param h smoothing parameter, see 'Details' for suggestions
 ##' @param pthres p-value threshold for selecting which p-values to adjust using HiC-ACT
 ##' @param outdir output directory path
-##' @param outname output file name
+##' @param outname desired output file name
 ##' @param bin1col column number containing the first bin IDs (defaults to 2 for Fit-Hi-C)
 ##' @param bin2col column number containing the second bin IDs (defaults to 4 for Fit-Hi-C)
 ##' @param ccountcol column number containing the observed contact counts (defaults to 5 for Fit-Hi-C)
