@@ -11,7 +11,7 @@ devtools::install_github("tmlagler/hicACT")
 library(hicACT)
 ```
 ## Model
-Let $p_{ij}$ represent the *p*-value for chromatin interaction between bin *i* and bin *j* from a specific Hi-C peak calling method. Consider the null hypothesis that bin pair (*i*, *j*) is compatible with random chromatin looping. Define the HiC-ACT test statistic <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;T_{ACT_{ij}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;T_{ACT_{ij}}" title="T_{ACT_{ij}}" /></a> as
+Let $p_{ij}$ represent the *p*-value for chromatin interaction between bin *i* and bin *j* from a specific Hi-C peak calling method. Consider the null hypothesis that bin pair (*i*, *j*) is compatible with random chromatin looping. Define the HiC-ACT test statistic <a href="https://www.codecogs.com/eqnedit.php?latex=\fn_phv&space;T_{ACT_{ij}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\fn_phv&space;T_{ACT_{ij}}" title="T_{ACT_{ij}}" /></a> as
 
 <div style="text-align: center"> <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\large&space;T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\large&space;T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" title="\large T_{ACT_{ij}}=\sum_{0 \leq |m-i|+|n-j| \leq h} w_{mn} tan\big\{(0.5-p_{mn})\pi\big\}" /></a> </div>
 
