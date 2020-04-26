@@ -67,7 +67,7 @@ We also suggest setting the *p*-value threshold parameter based on the size of t
 
 ## Example
 
-```r --run
+```{.R .cb.nb session=example}
 library(hicACT)
 test_file <- paste0(path.package("hicACT"), "/fithic_chr22.ds0.1.spline_pass2.res10000.significances.txt.gz")
 infile = fread(test_file)
