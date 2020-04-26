@@ -11,7 +11,7 @@ devtools::install_github("tmlagler/hicACT")
 library(hicACT)
 ```
 ## Model
-Let $p_{ij}$ represent the *p*-value for chromatin interaction between bin *i* and bin *j* from a specific Hi-C peak calling method. Consider the null hypothesis that bin pair (*i*, *j*) is compatible with random chromatin looping. Define the HiC-ACT test statistic <a href="https://www.codecogs.com/eqnedit.php?latex=\fn_phv&space;T_{ACT_{ij}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\fn_phv&space;T_{ACT_{ij}}" title="T_{ACT_{ij}}" /></a> as
+Let $p_{ij}$ represent the *p*-value for chromatin interaction between bin *i* and bin *j* from a specific Hi-C peak calling method. Consider the null hypothesis that bin pair (*i*, *j*) is compatible with random chromatin looping. Define the HiC-ACT test statistic <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;T_{ACT_{ij}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;T_{ACT_{ij}}" title="T_{ACT_{ij}}" /></a> as
 
 <div style="text-align: center"> <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\large&space;T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\large&space;T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" title="\large T_{ACT_{ij}}=\sum_{0 \leq |m-i|+|n-j| \leq h} w_{mn} tan\big\{(0.5-p_{mn})\pi\big\}" /></a> </div>
 
@@ -22,11 +22,11 @@ $\text{ st } \sum w_{mn}=1,$  $\text{ and where } d^2_{mn} = (m-i)^2+(n-j)^2$</d
 
 Note that the p-value for the pair itself will also contribute to the statistic and thus the smoothed p-value.
 
-$T_{ACT_{ij}}$ approximately follows a standard Cauchy distribution (*see HiC-ACT paper for details*). Therefore, the p-value for $T_{ACT_{ij}}$ can be approximated by:
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;T_{ACT_{ij}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;T_{ACT_{ij}}" title="T_{ACT_{ij}}" /></a> approximately follows a standard Cauchy distribution (*see HiC-ACT paper for details*). Therefore, the p-value for <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;T_{ACT_{ij}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;T_{ACT_{ij}}" title="T_{ACT_{ij}}" /></a> can be approximated by:
 
 <div style="text-align: center">$p^*_{ij} \approx 0.5-\big(tan^{-1}\{T_{ACT_{ij}}\}\big) \pi^{-1}$</div>
 
-We can interpret $p_{ij}^*$ as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value $p_{ij}^\*$ tends to be more significant and is driven by small p-values in its neighborhood. 
+We can interpret <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;p_{ij}^*" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;p_{ij}^*" title="p_{ij}^*" /></a> as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value $p_{ij}^\*$ tends to be more significant and is driven by small p-values in its neighborhood. 
 
 ## Usage
 ```
