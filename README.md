@@ -26,7 +26,7 @@ $T_{ACT_{ij}}$ approximately follows a standard Cauchy distribution (*see HiC-AC
 
 <div style="text-align: center">$p^*_{ij} \approx 0.5-\big(tan^{-1}\{T_{ACT_{ij}}\}\big) \pi^{-1}$</div>
 
-We can interpret $p_{ij}^*$ as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value $p_{ij}^*$ tends to be more significant and is driven by small p-values in its neighborhood. 
+We can interpret $p_{ij}^\*$ as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value $p_{ij}^\*$ tends to be more significant and is driven by small p-values in its neighborhood. 
 
 ## Usage
 ```
