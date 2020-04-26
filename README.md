@@ -11,14 +11,14 @@ devtools::install_github("tmlagler/hicACT")
 library(hicACT)
 ```
 ## Model
-Let $p_{ij}$ represent the *p*-value for chromatin interaction between bin *i* and bin *j* from a specific Hi-C peak calling method. Consider the null hypothesis that bin pair (*i*, *j*) is compatible with random chromatin looping. Define the HiC-ACT test statistic <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;T_{ACT_{ij}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;T_{ACT_{ij}}" title="T_{ACT_{ij}}" /></a> as
+Let <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;p_{ij}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;p_{ij}" title="p_{ij}" /></a> represent the *p*-value for chromatin interaction between bin *i* and bin *j* from a specific Hi-C peak calling method. Consider the null hypothesis that bin pair (*i*, *j*) is compatible with random chromatin looping. Define the HiC-ACT test statistic <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;T_{ACT_{ij}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;T_{ACT_{ij}}" title="T_{ACT_{ij}}" /></a> as
 
-<div style="text-align: center"> <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\large&space;T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\large&space;T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" title="\large T_{ACT_{ij}}=\sum_{0 \leq |m-i|+|n-j| \leq h} w_{mn} tan\big\{(0.5-p_{mn})\pi\big\}" /></a> </div>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\large&space;T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\large&space;T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" title="\large T_{ACT_{ij}}=\sum_{0 \leq |m-i|+|n-j| \leq h} w_{mn} tan\big\{(0.5-p_{mn})\pi\big\}" /></a>
 
-Here, $h$ is the local smoothing bandwidth. We take $w_{mn}$ to be the Gaussian kernel weight function, defined as:
+Here, *h* is the local smoothing bandwidth. We take <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;w_{mn}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;w_{mn}" title="w_{mn}" /></a> to be the Gaussian kernel weight function, defined as:
 
-<div style="text-align: center">$w_{mn}=\frac{\exp\big\{{\frac{-d^2_{mn}}{2}}\big\}}{\sum_{0 \leq |m'-i|+|n'-j| \leq h}\exp\big\{{\frac{d^2_{m'n'}}{2}}\big\}}$
-$\text{ st } \sum w_{mn}=1,$  $\text{ and where } d^2_{mn} = (m-i)^2+(n-j)^2$</div>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\large&space;w_{mn}=\frac{\exp\big\{{\frac{-d^2_{mn}}{2}}\big\}}{\sum_{0&space;\leq&space;|m'-i|&plus;|n'-j|&space;\leq&space;h}\exp\big\{{\frac{d^2_{m'n'}}{2}}\big\}}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\large&space;w_{mn}=\frac{\exp\big\{{\frac{-d^2_{mn}}{2}}\big\}}{\sum_{0&space;\leq&space;|m'-i|&plus;|n'-j|&space;\leq&space;h}\exp\big\{{\frac{d^2_{m'n'}}{2}}\big\}}" title="\large w_{mn}=\frac{\exp\big\{{\frac{-d^2_{mn}}{2}}\big\}}{\sum_{0 \leq |m'-i|+|n'-j| \leq h}\exp\big\{{\frac{d^2_{m'n'}}{2}}\big\}}" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\large&space;\text{&space;st&space;}&space;\sum&space;w_{mn}=1,&space;\text{&space;and&space;where&space;}&space;d^2_{mn}&space;=&space;(m-i)^2&plus;(n-j)^2" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\large&space;\text{&space;st&space;}&space;\sum&space;w_{mn}=1,&space;\text{&space;and&space;where&space;}&space;d^2_{mn}&space;=&space;(m-i)^2&plus;(n-j)^2" title="\large \text{ st } \sum w_{mn}=1, \text{ and where } d^2_{mn} = (m-i)^2+(n-j)^2" /></a>
 
 Note that the p-value for the pair itself will also contribute to the statistic and thus the smoothed p-value.
 
@@ -26,7 +26,7 @@ Note that the p-value for the pair itself will also contribute to the statistic 
 
 <div style="text-align: center">$p^*_{ij} \approx 0.5-\big(tan^{-1}\{T_{ACT_{ij}}\}\big) \pi^{-1}$</div>
 
-We can interpret <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;p_{ij}^*" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;p_{ij}^*" title="p_{ij}^*" /></a> as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value $p_{ij}^\*$ tends to be more significant and is driven by small p-values in its neighborhood. 
+We can interpret <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;p_{ij}^*" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;p_{ij}^*" title="p_{ij}^*" /></a> as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;p_{ij}^*" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;p_{ij}^*" title="p_{ij}^*" /></a> tends to be more significant and is driven by small p-values in its neighborhood. 
 
 ## Usage
 ```
@@ -53,9 +53,9 @@ Optional parameters:
 - **ignore_warnings**: default is FALSE
 
 ## Suggestions
-We suggest setting the smoothing parameter ($h$) based on the resolution of the data.
+We suggest setting the smoothing parameter (*h*) based on the resolution of the data.
 
-| Data Resolution (Kb) | Smoothing Parameter (h) |
+| Data Resolution (Kb) | Smoothing Parameter (*h*) |
 |:--------------------:|:-----------------------:|
 | 5 | 40 |
 | 10 | 20 |
@@ -63,7 +63,7 @@ We suggest setting the smoothing parameter ($h$) based on the resolution of the 
 | 25 | 11 |
 | 40 | 5 |
 
-We also suggest setting the *p*-value threshold parameter based on the size of the data. For instance, in data with 0.5 billion raw reads <code>pthres</code> could be set to 0.1, but in larger data sizes (e.g. 2 billion raw reads), choosing <code>pthres</code>$\approx 1.0e-5$ is more reasonable and helps keep the computation time low.
+We also suggest setting the *p*-value threshold parameter based on the size of the data. For instance, in data with 0.5 billion raw reads <code>pthres</code> could be set to 0.1, but in larger data sizes (e.g. 2 billion raw reads), choosing <code>pthres</code><a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\small&space;\approx&space;1.0e-5" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\small&space;\approx&space;1.0e-5" title="\small \approx 1.0e-5" /></a> is more reasonable and helps keep the computation time low.
 
 ## Example
 
