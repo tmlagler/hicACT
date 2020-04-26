@@ -13,7 +13,7 @@ library(hicACT)
 ## Model
 Let $p_{ij}$ represent the *p*-value for chromatin interaction between bin $i$ and bin $j$ from a specific Hi-C peak calling method. Consider the null hypothesis that bin pair ($i$, $j$) is compatible with random chromatin looping. Define the HiC-ACT test statistic $T_{ACT_{ij}}$ as
 
-<div style="text-align: center">$T_{ACT_{ij}}=\sum_{0 \leq |m-i|+|n-j| \leq h} w_{mn} tan\big\{(0.5-p_{mn})\pi\big\}$</div>
+<div style="text-align: center"><a href="https://www.codecogs.com/eqnedit.php?latex=T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?T_{ACT_{ij}}=\sum_{0&space;\leq&space;|m-i|&plus;|n-j|&space;\leq&space;h}&space;w_{mn}&space;tan\big\{(0.5-p_{mn})\pi\big\}" title="T_{ACT_{ij}}=\sum_{0 \leq |m-i|+|n-j| \leq h} w_{mn} tan\big\{(0.5-p_{mn})\pi\big\}" /></a></div>
 
 Here, $h$ is the local smoothing bandwidth. We take $w_{mn}$ to be the Gaussian kernel weight function, defined as:
 
@@ -26,7 +26,7 @@ $T_{ACT_{ij}}$ approximately follows a standard Cauchy distribution (*see HiC-AC
 
 <div style="text-align: center">$p^*_{ij} \approx 0.5-\big(tan^{-1}\{T_{ACT_{ij}}\}\big) \pi^{-1}$</div>
 
-We can interpret $p_{ij}^\*$ as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value $p_{ij}^\*$ tends to be more significant and is driven by small p-values in its neighborhood. 
+We can interpret $p_{ij}^*$ as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value $p_{ij}^\*$ tends to be more significant and is driven by small p-values in its neighborhood. 
 
 ## Usage
 ```
