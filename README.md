@@ -66,12 +66,12 @@ We suggest setting the smoothing parameter (*h*) based on the resolution of the 
 We also suggest setting the *p*-value threshold parameter based on the size of the data. For instance, in data with 0.5 billion raw reads <code>pthres</code> could be set to 0.1, but in larger data sizes (e.g. 2 billion raw reads), choosing <code>pthres</code><a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\small&space;\approx&space;1.0e-5" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\small&space;\approx&space;1.0e-5" title="\small \approx 1.0e-5" /></a> is more reasonable and helps keep the computation time low.
 
 ## Example
-
-```{.R .cb.nb session=example}
+The test data used in the following example is the output of FitHiC2 applied to GM12878 10Kb chromosome 22 down-sampled to ~0.5 billion raw reads, then subsetted to only include 10,000 pairwise interactions. The purpose of this test data is to test that the package has been installed correctly. Local run time for the following example is ~10 seconds. <code>hicACT</code> should not be run locally on large data sets.
+```r
 library(hicACT)
-test_file <- paste0(path.package("hicACT"), "/fithic_chr22.ds0.1.spline_pass2.res10000.significances.txt.gz")
-infile = fread(test_file)
-head(infile)
+test_file <- paste0(path.package("hicACT"), "/test_data.txt")
+head(fread(test_file))
+hicACT(infile=test_file, kb=10, h=20, pthres=0.1)
 ```
 
 
