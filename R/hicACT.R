@@ -57,7 +57,7 @@ hicACT <- function(infile, kb, h, thres,
   data.table::setDT(data)[, i := (eval(bin1)+Kb/2)/Kb][, j := (eval(bin2)+Kb/2)/Kb]
 
   # select bin pairs for which to compute HiC-ACT test statistic and p-value
-  outdata <- data[eval(filtercol) < thres]
+  outdata <- data[eval(filter) < thres]
   ij_set <- outdata[,c("i","j")]
 
   # %fin% from fastmatch()
@@ -127,7 +127,6 @@ hicACT <- function(infile, kb, h, thres,
 
   # add HiC-ACT p-values to input file
   # only includes bin pairs of interest (post filtering)
-  outdata <- data[eval(pval) < thres]
   data.table::setDT(outdata)[, ACT_pvalue := Tact_pvals]
   # drop (i, j) columns
   outdata[, c("i","j"):=NULL]

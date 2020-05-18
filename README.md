@@ -71,7 +71,7 @@ The test data used in the following example is the output of FitHiC2 applied to 
 library(hicACT)
 test_file <- paste0(path.package("hicACT"), "/test_data.txt")
 head(fread(test_file))
-hicACT(infile=test_file, kb=10, h=20, pthres=0.1)
+hicACT(infile=test_file, kb=10, h=20, thres=0.1)
 ```
 
 

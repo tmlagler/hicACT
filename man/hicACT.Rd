@@ -41,3 +41,9 @@ Suggestions for the smoothing parameter (h) based on data resolution:
   - If 40Kb, then h=5.
 
 }
+\examples{
+library(hicACT)
+test_file <- paste0(path.package("hicACT"), "/test_data.txt")
+head(fread(test_file))
+hicACT(infile=test_file, kb=10, h=20, thres=0.1)
+}
