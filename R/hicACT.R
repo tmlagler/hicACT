@@ -2,13 +2,14 @@
 ##' @param infile output file from a Hi-C chromatin interaction calling method, such as Fit-Hi-C (column names required)
 ##' @param kb data resolution in Kb, e.g. 10
 ##' @param h smoothing parameter, see 'Details' for suggestions
-##' @param pthres p-value threshold for selecting which p-values to adjust using HiC-ACT
+##' @param thres threshold for selecting which p-values to adjust using HiC-ACT
 ##' @param outdir output directory path (defaults to working directory)
 ##' @param outname desired output file name
 ##' @param bin1col column number containing the first bin IDs (defaults to 2 for Fit-Hi-C)
 ##' @param bin2col column number containing the second bin IDs (defaults to 4 for Fit-Hi-C)
 ##' @param ccountcol column number containing the observed contact counts (defaults to 5 for Fit-Hi-C)
 ##' @param pcol column number containing the p-values (defaults to 6 for Fit-Hi-C)
+##' @param filtercol column number to be used for filtering (defaults to 6 for Fit-Hi-C p-values, enter 7 for q-values)
 ##' @param ignore_warnings default is FALSE
 ##' @section Details: smoothing parameter (h) is based on data resolution. Suggestions: (kb=10, h=20), (kb=20, h=12), (kb=25, h=10)
 ##' @return A zipped text file containing the original input file with an appendended column of HiC-ACT p-values for all p-values processed (those less than the specified threshold)
@@ -18,10 +19,10 @@
 ##' @importFrom R.utils gzip
 ##' @export hicACT
 
-hicACT <- function(infile, kb, h, pthres,
+hicACT <- function(infile, kb, h, thres,
                    outdir=paste0(getwd(),"/"),
                    outname="ACT_adjusted",
-                   bin1col=2, bin2col=4, ccountcol=5, pcol=6,
+                   bin1col=2, bin2col=4, ccountcol=5, pcol=6,filtercol=6,
                    ignore_warnings=F){
 
   # read in Hi-C peak calling output (eg from Fit-Hi-C)
@@ -30,11 +31,12 @@ hicACT <- function(infile, kb, h, pthres,
   # force numeric inputs to be numeric if read in as strings
   kb <- as.numeric(kb)
   h <- as.numeric(h)
-  pthres <- as.numeric(pthres)
+  thres <- as.numeric(thres)
   bin1col <- as.numeric(bin1col)
   bin2col <- as.numeric(bin2col)
   ccountcol <- as.numeric(ccountcol)
   pcol <- as.numeric(pcol)
+  filtercol <- as.numeric(filtercol)
 
   # store necessary column names for data.table operations
   cnames <- names(indata)
@@ -42,9 +44,10 @@ hicACT <- function(infile, kb, h, pthres,
   bin2 <- as.name(cnames[bin2col])
   ccount <- as.name(cnames[ccountcol])
   pval <- as.name(cnames[pcol])
+  filter <- as.name(cnames[filtercol])
 
   # check data input and specified parameters
-  check_input(indata, kb, h, pthres, bin1, bin2, ccount, pval, ignore_warnings)
+  check_input(indata, kb, h, thres, bin1, bin2, ccount, pval, ignore_warnings)
 
   # remove all zero valued contactCounts
   data <- indata[eval(ccount) > 0]
@@ -54,9 +57,13 @@ hicACT <- function(infile, kb, h, pthres,
   data.table::setDT(data)[, i := (eval(bin1)+Kb/2)/Kb][, j := (eval(bin2)+Kb/2)/Kb]
 
   # select bin pairs for which to compute HiC-ACT test statistic and p-value
-  outdata <- data[eval(pval) < pthres]
+  outdata <- data[eval(filtercol) < thres]
   ij_set <- outdata[,c("i","j")]
 
+  # %fin% from fastmatch()
+  `%fin%` <- function(x, y) {
+    fastmatch::fmatch(x, y, nomatch = 0L) > 0L
+  }
 
   # compute test statistic Tact and return corresponding p-value
   Tact <- function(i,j){
@@ -73,10 +80,6 @@ hicACT <- function(infile, kb, h, pthres,
     inrange <- abs(i-pair_pos$m)+abs(j-pair_pos$n) <= h
     pairs <- pair_pos[inrange,]
 
-    # %fin% from fastmatch()
-    `%fin%` <- function(x, y) {
-      fastmatch::fmatch(x, y, nomatch = 0L) > 0L
-    }
     # only (m,n) pairs with pvalues in data
     reduce.dim <- (data_red$i %fin% pairs$m) & (data_red$j %fin% pairs$n)
     small_data <- data_red[reduce.dim,]
@@ -124,7 +127,7 @@ hicACT <- function(infile, kb, h, pthres,
 
   # add HiC-ACT p-values to input file
   # only includes bin pairs of interest (post filtering)
-  outdata <- data[eval(pval) < pthres]
+  outdata <- data[eval(pval) < thres]
   data.table::setDT(outdata)[, ACT_pvalue := Tact_pvals]
   # drop (i, j) columns
   outdata[, c("i","j"):=NULL]

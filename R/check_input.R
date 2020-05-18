@@ -1,4 +1,4 @@
-check_input <- function(indata, kb, h, pthres, bin1, bin2, ccount, pval, ignore_warnings){
+check_input <- function(indata, kb, h, thres, bin1, bin2, ccount, pval, ignore_warnings){
 
   # check if bin IDs are positive integers
   if(any(indata[,eval(bin1)]%%1!=0)>0 | any(indata[,eval(bin1)]<=0)){
@@ -19,12 +19,12 @@ check_input <- function(indata, kb, h, pthres, bin1, bin2, ccount, pval, ignore_
   }
 
   # check if p-value threshold is reasonable
-  if(pthres>=1){
+  if(thres>=1){
     warning("HiC-ACT applied to all p-values")
-  }else if(pthres<=1.0e-10){
-    warning("Consider appling a less stringent p-value threshold")
-  }else if(pthres>.3 & pthres<1){
-    warning("Consider appling a more stringent p-value threshold")
+  }else if(thres<=1.0e-10){
+    warning("Consider appling a less stringent threshold")
+  }else if(thres>.3 & thres<1){
+    warning("Consider appling a more stringent threshold")
   }
 
   # check if any missing values in data
