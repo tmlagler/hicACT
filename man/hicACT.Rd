@@ -11,17 +11,17 @@ hicACT(infile, kb, h, pthres, outdir, outname="ACT_adjusted",
                    ignore_warnings=F)
 }
 \arguments{
-  \item{infile}{output file from a Hi-C chromatin interaction calling method, such as Fit-Hi-C (column names required)}
+  \item{infile}{output file from a Hi-C chromatin interaction calling method, such as Fit-Hi-C/FitHiC2 (column names required)}
   \item{kb}{data resolution in Kb, e.g. 10}
   \item{h}{smoothing parameter, see 'Details' for suggestions}
   \item{thres}{threshold for selecting which p-values to adjust using HiC-ACT}
   \item{outdir}{output directory path (defaults to working directory)}
   \item{outname}{desired output file name}
-  \item{bin1col}{column number containing the first bin IDs (defaults to 2 for Fit-H-C)}
+  \item{bin1col}{column number containing the first bin IDs (defaults to 2 for Fit-Hi-C/FitHiC2)}
   \item{bin2col}{column number containing the second bin IDs (defaults to 4 for Fit-Hi-C)}
-  \item{ccountcol}{column number containing the observed contact counts (defaults to 5 for Fit-Hi-C)}
-  \item{pcol}{column number containing the p-values (defaults to 6 for Fit-Hi-C)}
-  \item{filtercol}{column number to be used for filtering (defaults to 6 for Fit-Hi-C p-values, enter 7 for q-values)}
+  \item{ccountcol}{column number containing the observed contact counts (defaults to 5 for Fit-Hi-C/FitHiC2)}
+  \item{pcol}{column number containing the p-values (defaults to 6 for Fit-Hi-C/FitHiC2)}
+  \item{filtercol}{column number to be used for filtering (defaults to 6 for Fit-Hi-C/FitHiC2 p-values, enter 7 for q-values)}
   \item{ignore_warnings}{default is FALSE}
 }
 \value{
