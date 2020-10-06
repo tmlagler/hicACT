@@ -69,7 +69,7 @@ We also suggest setting the *p*-value threshold parameter based on the size of t
 data with fewer than 1 billion raw reads, and choosing <code>pthres</code><a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;\small&space;\approx&space;1.0e-6" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\small&space;\approx&space;1.0e-6" title="\small \approx 1.0e-6" /></a> for data with greater than 1 billion raw reads. This pre-filtering helps keep the computation time low. 
 
 ## Example
-The test data used in the following example is the output of FitHiC2 applied to GM12878 10Kb chromosome 22 down-sampled to ~0.5 billion raw reads, then subsetted to only include 10,000 pairwise interactions. The purpose of this test data is to test that the package has been installed correctly. Local run time for the following example is ~10 seconds. <code>hicACT</code> should not be run locally on large data sets.
+The test data used in the following example is the output of FitHiC2 applied to the GM12878 10Kb Hi-C data (Rao, et al. 2014) chromosome 22 down-sampled to ~0.5 billion raw reads, then subsetted to only include 10,000 pairwise interactions. The purpose of this test data is to test that the package has been installed correctly. Local run time for the following example is ~10 seconds. <code>hicACT</code> should not be run locally on large data sets.
 ```r
 library(hicACT)
 test_file <- paste0(path.package("hicACT"), "/test_data.txt")
