@@ -49,7 +49,7 @@ Optional parameters:
 - **outdir**: output directory path (defaults to working directory)
 - **outname**: desired output file name (defaults to "ACT_adjusted")
 - **bin1col**: column number containing the first bin IDs (defaults to 2 for Fit-Hi-C/FitHiC2)
-- **bin2col**: column number containing the second bin IDs (defaults to 4 for Fit-Hi-C)
+- **bin2col**: column number containing the second bin IDs (defaults to 4 for Fit-Hi-C/FitHiC2)
 - **ccountcol**: column number containing the observed contact counts (defaults to 5 for Fit-Hi-C/FitHiC2)
 - **pcol**: column number containing the p-values (defaults to 6 for Fit-Hi-C/FitHiC2)
 - **ignore_warnings**: default is FALSE
