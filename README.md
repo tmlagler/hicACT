@@ -3,6 +3,8 @@
 ## Introduction
 <code>hicACT</code> is an R package to implement HiC-ACT. HiC-ACT, an aggregated Cauchy test (ACT) based approach, improves the detection of significant chromatin interactions by post-processing calling results from methods relying on the assumption that all chromatin interactions are statistically independent. HiC-ACT uses a linear combination of transformed *p*-values with non-negative weights to compute a smoothed *p*-value.
 
+hicACT is maintained by Taylor Lagler [tmlagler@live.unc.edu] and Yun Li [yunli@med.unc.edu].
+
 ## Installation
 We recommend installing from Github for the latest version of the code:
 ```r
