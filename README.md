@@ -30,7 +30,7 @@ Note that the p-value for the bin pair itself will also contribute to the statis
 
 We can interpret <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;p_{ij}^*" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;p_{ij}^*" title="p_{ij}^*" /></a> as the local neighborhood smoothed p-value. Intuitively, for a biologically meaningful chromatin interaction, all bin pairs in its neighborhood are more likely to have significant p-values. Thus, the combined p-value <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\fn_phv&space;p_{ij}^*" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;p_{ij}^*" title="p_{ij}^*" /></a> tends to be more significant and is driven by small p-values in its neighborhood. Through the properties of the aggregated Cauchy combination test, HiC-ACT specifically accounts for the inherent correlation between the contact frequency of neighboring pairs and maintains the benefit of not needing information about the correlation structure.
 
-Further details on the Cauchy combination test underlying the HiC-ACT method can be found in the papers by Liu et. al (10.1080/01621459.2018.1554485, 10.1016/j.ajhg.2019.01.002).
+Further details on the Cauchy combination test underlying the HiC-ACT method can be found in the papers by Liu et. al ([10.1080/01621459.2018.1554485](https://doi.org/10.1080/01621459.2018.1554485), [10.1016/j.ajhg.2019.01.002](https://doi.org/10.1016/j.ajhg.2019.01.002)). Details on the HiC-ACT method can be found in our AJHG paper [10.1016/j.ajhg.2021.01.009](https://doi.org/10.1016/j.ajhg.2021.01.009).
 
 ## Usage
 ```
@@ -56,6 +56,8 @@ Optional parameters:
 - **pcol**: column number containing the p-values (defaults to 6 for Fit-Hi-C/FitHiC2)
 - **ignore_warnings**: default is FALSE
 
+Note that hicACT() is intended to be run separately for each chromosome.
+
 ## Suggestions
 We suggest setting the smoothing parameter (*h*) based on the resolution of the data.
 
@@ -79,5 +81,7 @@ head(fread(test_file))
 hicACT(infile=test_file, kb=10, h=20, thres=0.1)
 ```
 
+## Citation
+Lagler TM, Abnousi A, Hu M, Yang Y, Li Y. HiC-ACT: improved detection of chromatin interactions from Hi-C data via aggregated Cauchy test. Am J Hum Genet. 2021 Feb 4;108(2):257-268. doi: [10.1016/j.ajhg.2021.01.009](https://doi.org/10.1016/j.ajhg.2021.01.009). PMID: 33545029.
 
 
