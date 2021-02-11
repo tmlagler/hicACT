@@ -34,7 +34,7 @@ Further details on the Cauchy combination test underlying the HiC-ACT method can
 
 ## Usage
 ```
-hicACT(infile, kb, h, pthres,
+hicACT(infile, kb, h, thres,
     outdir, outname="ACT_adjusted",
     bin1col=2, bin2col=4, ccountcol=5, pcol=6,
     ignore_warnings=F)
@@ -44,7 +44,7 @@ Required paramters:
 - **infile**: output file from a Hi-C chromatin interaction calling method, such as Fit-Hi-C/FitHiC2 (column names required)
 - **kb**: data resolution in Kb, e.g. 10
 - **h**: smoothing parameter, see 'Details' for suggestions
-- **pthres**: p-value threshold for selecting which p-values to adjust using HiC-ACT
+- **thres**: p-value threshold for selecting which p-values to adjust using HiC-ACT
 
 Optional parameters:
 
