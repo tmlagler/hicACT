@@ -1,11 +1,12 @@
 check_input <- function(indata, kb, h, thres, bin1, bin2, ccount, pval, ignore_warnings){
 
-  # check if bin IDs are positive integers
-  if(any(indata[,eval(bin1)]%%1!=0)>0 | any(indata[,eval(bin1)]<=0)){
-    stop("Fragment identifiers must be positive integers")
+  # check if bin IDs are integers
+  # 04/20/21 removed "positive integer" requirement
+  if(any(indata[,eval(bin1)]%%1!=0)>0){
+    stop("Fragment identifiers must be integers")
   }
-  if(any(indata[,eval(bin2)]%%1!=0)>0 | any(indata[,eval(bin2)]<=0)){
-    stop("Fragment identifiers must be positive integers")
+  if(any(indata[,eval(bin2)]%%1!=0)>0){
+    stop("Fragment identifiers must be integers")
   }
 
   # check if contact counts are integers >=0
